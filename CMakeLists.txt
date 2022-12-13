@@ -7,8 +7,10 @@ if(NOT CMAKE_C_STANDARD)
 endif()
 
 # Needs C++17 for BT
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 17)
+endif()
+# set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -27,19 +29,20 @@ find_package(nav_msgs REQUIRED)
 find_package(nav2_msgs REQUIRED)
 find_package(std_srvs REQUIRED)
 find_package(tf2_ros REQUIRED)
+find_package(Boost COMPONENTS coroutine QUIET)
 
 set(dependencies 
-    # behaviortree_cpp
-    rclcpp
-    rclcpp_action
-    rclcpp_lifecycle
-    rclcpp_components
-    std_msgs
-    geometry_msgs
-    nav_msgs
-    nav2_msgs
-    std_srvs
-    tf2_ros
+  rclcpp
+  rclcpp_action
+  rclcpp_lifecycle
+  rclcpp_components
+  std_msgs
+  geometry_msgs
+  nav_msgs
+  nav2_msgs
+  std_srvs
+  tf2_ros
+  behaviortree_cpp
 )
 
 set(executable_name behavior_tree_example)
