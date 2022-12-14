@@ -22,6 +22,8 @@ namespace bt_ros_example
          * @param conf BT Node Configuration
         */
         PingReceivedNode(const std::string & condition_name, const BT::NodeConfig & conf);
+        PingReceivedNode() = delete;
+        ~PingReceivedNode();
 
         /**
         * @brief Creates list of BT ports
@@ -30,8 +32,8 @@ namespace bt_ros_example
         static BT::PortsList providedPorts()
         {
             return {
-                BT::InputPort("force_ping"),
-                BT::OutputPort("last_ping_id"),
+                BT::InputPort<bool>("force_ping"),
+                BT::OutputPort<int32_t>("last_ping_id"),
             };
         }
 

@@ -4,7 +4,8 @@ namespace bt_ros_example
 {
     PingReceivedNode::PingReceivedNode(const std::string & condition_name, const BT::NodeConfig & conf)
     : BT::ConditionNode(condition_name, conf),
-    sub_topic_("incoming_ping")
+    sub_topic_("incoming_ping"),
+    ping_id_received_(-1)
     {
         node_ = conf.blackboard->get<rclcpp_lifecycle::LifecycleNode::SharedPtr>("node");
 
@@ -14,12 +15,21 @@ namespace bt_ros_example
                                                         rclcpp::SystemDefaultsQoS(),
                                                         std::bind(&PingReceivedNode::ping_callback, this, std::placeholders::_1));
 
-        if(getInput<bool>("force_ping"))
+        bool force_ping;
+        getInput("force_ping", force_ping);
+
+        if(force_ping)
         {
             // assume we're transmitting the first ping
             ping_id_received_=0;
         }
         return;
+    }
+
+    PingReceivedNode::~PingReceivedNode()
+    {
+        RCLCPP_INFO(node_->get_logger(), "SHUTTING DOWN PING RECEIVED NODE");
+        sub_.reset();
     }
 
     BT::NodeStatus PingReceivedNode::tick()
