@@ -92,6 +92,7 @@ protected:
     rclcpp::TimerBase::SharedPtr    timer_;
     BT::Blackboard::Ptr             blackboard_;
     BT::Tree                        tree_;
+    BT::BehaviorTreeFactory         factory_;
 };
 }
 #endif //BT_ROS_NODE_

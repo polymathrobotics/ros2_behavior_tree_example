@@ -1,4 +1,5 @@
 #include <bt_ros_node.h>
+#include <plugins/ping_received_bt_node.h>
 
 #include "behaviortree_cpp/blackboard.h"
 #include "rclcpp/publisher.hpp"
@@ -23,13 +24,21 @@ namespace bt_ros_example
         param_desc.description = "Rate in Hz to run behavior tree at";
 
         this->declare_parameter("rate_hz", float_t(30), param_desc);
+        this->declare_parameter("num_republish", int32_t(3));
+        this->declare_parameter("ping_starter", true);
 
         // Declare the behavior tree default file
         this->declare_parameter("behaviortree_file", "");
 
         // Set up the blackboard for the behavior tree
-        this->blackboard_ = BT::Blackboard::create();
+        blackboard_ = BT::Blackboard::create();
+        blackboard_->set<rclcpp_lifecycle::LifecycleNode::SharedPtr>("node", this->shared_from_this());
+        blackboard_->set<int64_t>("num_publish", this->get_parameter("num_republish").as_int());
+        blackboard_->set<bool>("ping_start", this->get_parameter("ping_starter").as_bool());
+        blackboard_->set<int64_t>("ping_id", 0);
+        blackboard_->set<int64_t>("pong_id", 0);
 
-        auto pub = this->create_publisher<std_msgs::msg::String>("abc", 10);
+        // Register Nodes into the Factory to generate a tree later
+        factory_.registerNodeType<PingReceivedNode>("PingReceivedNode");
     }
 }
