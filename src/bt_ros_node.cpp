@@ -34,7 +34,7 @@ namespace bt_ros_example
         this->declare_parameter("ping_starter", true);
 
         // Declare the behavior tree default file
-        this->declare_parameter("behaviortree_file", "behavior_trees/");
+        this->declare_parameter("behaviortree_file", "behavior_trees/ping_pong_no_decorator.xml");
 
         // Register Nodes into the Factory to generate a tree later
         factory_.registerNodeType<PingReceivedNode>("PingReceivedNode");
