@@ -26,7 +26,7 @@ namespace bt_ros_example
         param_desc.floating_point_range.resize(1);
         param_desc.floating_point_range[0].from_value = 0.5; 
         param_desc.floating_point_range[0].to_value = 100;
-        param_desc.floating_point_range[0].step = 10;
+        param_desc.floating_point_range[0].step = 0.05;
         param_desc.description = "Rate in Hz to run behavior tree at";
 
         this->declare_parameter("rate_hz", float_t(30), param_desc);
@@ -51,16 +51,18 @@ namespace bt_ros_example
         // Set up the blackboard for the behavior tree
         blackboard_ = BT::Blackboard::create();
         blackboard_->set<rclcpp_lifecycle::LifecycleNode::SharedPtr>("node", this->shared_from_this());
-        blackboard_->set<int64_t>("num_publish", this->get_parameter("num_republish").as_int());
+        blackboard_->set<int32_t>("num_publish", this->get_parameter("num_republish").as_int());
         blackboard_->set<bool>("ping_start", this->get_parameter("ping_starter").as_bool());
-        blackboard_->set<int64_t>("ping_id", 0);
-        blackboard_->set<int64_t>("pong_id", 0);
+        blackboard_->set<int32_t>("ping_id", 0);
+        blackboard_->set<int32_t>("pong_id", 0);
 
-        tree_ = factory_.createTreeFromFile(this->get_parameter("behaviortree_file").as_string());
+        RCLCPP_INFO(get_logger(), "Loading file %s", get_parameter("behaviortree_file").as_string().c_str());
+
+        tree_ = factory_.createTreeFromFile(this->get_parameter("behaviortree_file").as_string(), blackboard_);
         
         // Running a timer to run this at a stable rate
         // This enables us to run the executor with just a spin at the upper level
-        std::chrono::milliseconds rate(int64_t(1000.0 / this->get_parameter("rate_hz").as_double()));
+        std::chrono::milliseconds rate(int32_t(1000.0 / this->get_parameter("rate_hz").as_double()));
         timer_ = this->create_wall_timer(rate, 
                                         std::bind(&BtRosNode::timer_callback, this));
 
