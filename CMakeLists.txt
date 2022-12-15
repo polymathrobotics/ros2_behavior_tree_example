@@ -46,10 +46,19 @@ set(dependencies
 )
 
 set(executable_name behavior_tree_example)
+set(library_name ${PROJECT_NAME})
 
 add_executable(
   ${executable_name}
   src/main.cpp
+)
+
+add_library(
+  ${library_name}
+  src/bt_ros_node.cpp
+  src/plugins/ping_received_bt_node.cpp
+  src/plugins/pong_bt_node.cpp
+  src/plugins/publish_status_bt_node.cpp
 )
 
 include_directories(
@@ -59,6 +68,18 @@ include_directories(
 ament_target_dependencies(
   ${executable_name}
   ${dependencies}
+)
+
+target_link_libraries(${executable_name} ${library_name})
+
+ament_target_dependencies(${library_name}
+  ${dependencies}
+)
+
+install(TARGETS ${library_name}
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin
 )
 
 install(TARGETS ${executable_name}
@@ -84,5 +105,6 @@ if(BUILD_TESTING)
 endif()
 
 ament_export_include_directories(include)
+ament_export_libraries(${library_name})
 ament_export_dependencies(${dependencies})
 ament_package()

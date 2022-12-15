@@ -52,10 +52,10 @@ namespace bt_ros_example
         /**
          * @brief Subscription to the Ping message from a tertiary node
          * */
+        std::string                                             sub_topic_;
+        int32_t                                                 ping_id_received_;
         rclcpp::Subscription<std_msgs::msg::Int32>::SharedPtr   sub_;
         rclcpp_lifecycle::LifecycleNode::SharedPtr              node_;
-        int32_t                                                 ping_id_received_;
-        std::string                                             sub_topic_;
     };
 }
 

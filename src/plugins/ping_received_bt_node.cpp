@@ -11,7 +11,7 @@ namespace bt_ros_example
 
         // Setup subscription on running this node
         // Subscription will run when lifecycle node executor is called 
-        node_->create_subscription<std_msgs::msg::Int32>(sub_topic_,
+        sub_ = node_->create_subscription<std_msgs::msg::Int32>(sub_topic_,
                                                         rclcpp::SystemDefaultsQoS(),
                                                         std::bind(&PingReceivedNode::ping_callback, this, std::placeholders::_1));
 

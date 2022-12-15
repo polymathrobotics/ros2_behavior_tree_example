@@ -25,7 +25,7 @@ public:
      * @brief A constructor for bt_ros_example::BtRosNode
      * @param opotions Additional options to control the creation of the node
     */
-    explicit BtRosNode(const rclcpp::NodeOptions & options = rclcpp::NodeOptions());
+    explicit BtRosNode(const rclcpp::NodeOptions &options = rclcpp::NodeOptions());
 
     /**
     * @brief a destructor for bt_ros_example::BtRosNode class

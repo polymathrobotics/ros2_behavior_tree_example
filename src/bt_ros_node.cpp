@@ -15,7 +15,7 @@ using namespace std::chrono_literals;
 
 namespace bt_ros_example
 {
-    BtRosNode::BtRosNode(const rclcpp::NodeOptions & options)
+    BtRosNode::BtRosNode(const rclcpp::NodeOptions &options)
     : rclcpp_lifecycle::LifecycleNode("bt_ros_node", "", options)
     {
         // Get all necesssary params for ros2 to utilize

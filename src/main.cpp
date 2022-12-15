@@ -12,14 +12,14 @@
 int main(int argc, char * argv[])
 {
   rclcpp::init(argc, argv);
-  // auto node =  bt_ros_example::BtRosNode();
+
   rclcpp_lifecycle::LifecycleNode::SharedPtr node = std::make_shared<bt_ros_example::BtRosNode>();
 
-  // This is the same as rclcpp::spin(node);
+  // // This is the same as rclcpp::spin(node);
   rclcpp::executors::SingleThreadedExecutor executor;
-  // executor requires the base interface to run. Doesn't need anything else.
+  // // executor requires the base interface to run. Doesn't need anything else.
   executor.add_node(node->get_node_base_interface());
-  // Spin away, we don't need to spin once, or anything else as this is handled by a wall timer within the node
+  // // Spin away, we don't need to spin once, or anything else as this is handled by a wall timer within the node
   executor.spin();
   
   rclcpp::shutdown();
