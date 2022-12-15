@@ -1,11 +1,17 @@
-#include <bt_ros_node.h>
-#include <plugins/ping_received_bt_node.h>
+#include <chrono>
+
+#include "bt_ros_node.h"
+#include "plugins/ping_received_bt_node.h"
+#include "plugins/pong_bt_node.h"
+#include "plugins/publish_status_bt_node.h"
 
 #include "behaviortree_cpp/blackboard.h"
 #include "rclcpp/publisher.hpp"
 
 #include "std_msgs/msg/string.hpp"
 #include "rcl_interfaces/msg/parameter_descriptor.h"
+
+using namespace std::chrono_literals;
 
 namespace bt_ros_example
 {
@@ -28,8 +34,17 @@ namespace bt_ros_example
         this->declare_parameter("ping_starter", true);
 
         // Declare the behavior tree default file
-        this->declare_parameter("behaviortree_file", "");
+        this->declare_parameter("behaviortree_file", "behavior_trees/");
 
+        // Register Nodes into the Factory to generate a tree later
+        factory_.registerNodeType<PingReceivedNode>("PingReceivedNode");
+        factory_.registerNodeType<PongNode>("PongNode");
+        factory_.registerNodeType<PublishStatusNode>("PublishStatusNode");
+    }
+
+    LifecycleNodeInterface::CallbackReturn
+    BtRosNode::on_configure(const rclcpp_lifecycle::State &)
+    {
         // Set up the blackboard for the behavior tree
         blackboard_ = BT::Blackboard::create();
         blackboard_->set<rclcpp_lifecycle::LifecycleNode::SharedPtr>("node", this->shared_from_this());
@@ -38,7 +53,60 @@ namespace bt_ros_example
         blackboard_->set<int64_t>("ping_id", 0);
         blackboard_->set<int64_t>("pong_id", 0);
 
-        // Register Nodes into the Factory to generate a tree later
-        factory_.registerNodeType<PingReceivedNode>("PingReceivedNode");
+        tree_ = factory_.createTreeFromFile(this->get_parameter("behaviortree_file").as_string());
+        
+        // Running a timer to run this at a stable rate
+        // This enables us to run the executor with just a spin at the upper level
+        std::chrono::milliseconds rate(int64_t(1000.0 / this->get_parameter("rate_hz").as_double()));
+        timer_ = this->create_wall_timer(rate, 
+                                        std::bind(&BtRosNode::timer_callback, this));
+
+        // start with the timer cancelled
+        RCLCPP_INFO(this->get_logger(), "Stopping Timer from running");
+        timer_->cancel();
+
+        return LifecycleNodeInterface::CallbackReturn::SUCCESS;
     }
+
+    LifecycleNodeInterface::CallbackReturn
+    BtRosNode::on_activate(const rclcpp_lifecycle::State & state)
+    {
+        RCLCPP_INFO(this->get_logger(), "Starting the Timer and running Ticks");
+        timer_->reset();
+        return LifecycleNodeInterface::CallbackReturn::SUCCESS;
+    }
+
+    LifecycleNodeInterface::CallbackReturn
+    BtRosNode::on_deactivate(const rclcpp_lifecycle::State & state)
+    {
+        RCLCPP_INFO(this->get_logger(), "Stopping Timer");
+        timer_->cancel();
+
+        // We can wait until Cancel as well by doing timer_->is_cancelled()
+
+        return LifecycleNodeInterface::CallbackReturn::SUCCESS;
+    }
+
+    LifecycleNodeInterface::CallbackReturn
+    BtRosNode::on_cleanup(const rclcpp_lifecycle::State & state)
+    {
+        blackboard_.reset();
+        timer_.reset();
+        return LifecycleNodeInterface::CallbackReturn::SUCCESS;
+    }
+
+    rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn
+    BtRosNode::on_shutdown(const rclcpp_lifecycle::State & state)
+    {
+        return LifecycleNodeInterface::CallbackReturn::SUCCESS;
+    }
+
+    void
+    BtRosNode::timer_callback()
+    {
+        RCLCPP_INFO(this->get_logger(), "Ticking the tree");
+        tree_.tickOnce();
+        return;
+    }
+
 }

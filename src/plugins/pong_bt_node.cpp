@@ -1,4 +1,4 @@
-#include <plugins/pong_node.h>
+#include <plugins/pong_bt_node.h>
 #include "std_msgs/msg/int32.hpp"
 
 namespace bt_ros_example

@@ -61,6 +61,19 @@ protected:
     on_activate(const rclcpp_lifecycle::State & state);
 
     /**
+     * @brief Deactivate BtRosNode and stop Ticking Behavior Tree
+     * 
+     * wall timer is triggered to trigger behavior tree ticks at
+     * a regular interval
+     * 
+     * @param state reference to LifeCycle node State 
+     * 
+     * @return SUCCESS or FAILIURE
+    */
+    LifecycleNodeInterface::CallbackReturn
+    on_deactivate(const rclcpp_lifecycle::State & state);
+
+    /**
      * @brief Cleans up and resets member variables
      * 
      * Cleanup is done to transition the node back to unconfigured state
@@ -70,7 +83,7 @@ protected:
      * 
      * @return SUCCESS or FAILIURE
     */
-    rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn
+    LifecycleNodeInterface::CallbackReturn
     on_cleanup(const rclcpp_lifecycle::State & state);
 
     /**

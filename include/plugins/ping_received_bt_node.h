@@ -13,7 +13,7 @@ namespace bt_ros_example
      * @brief Condition Node that tells us whether a ping has been received
      * 
     */
-    class PingReceivedNode : BT::ConditionNode
+    class PingReceivedNode : public BT::ConditionNode
     {
     public:
         /**
