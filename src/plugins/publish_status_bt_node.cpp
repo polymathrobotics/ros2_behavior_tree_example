@@ -1,4 +1,4 @@
-#include "plugins/publish_status_bt_node.h"
+#include "ros2_behavior_tree_example/plugins/publish_status_bt_node.h"
 
 namespace bt_ros_example
 {

@@ -1,4 +1,4 @@
-#include <plugins/ping_received_bt_node.h>
+#include "ros2_behavior_tree_example/plugins/ping_received_bt_node.h"
 
 namespace bt_ros_example
 {

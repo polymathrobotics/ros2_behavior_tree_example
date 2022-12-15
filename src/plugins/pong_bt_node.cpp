@@ -1,4 +1,4 @@
-#include <plugins/pong_bt_node.h>
+#include "ros2_behavior_tree_example/plugins/pong_bt_node.h"
 #include "std_msgs/msg/int32.hpp"
 
 namespace bt_ros_example
