@@ -6,8 +6,8 @@
 #include "behaviortree_cpp/behavior_tree.h"
 #include "behaviortree_cpp/bt_factory.h"
 
-#ifndef BT_ROS_NODE_
-#define BT_ROS_NODE_
+#ifndef BT_ROS_NODE_H_
+#define BT_ROS_NODE_H_
 
 
 using LifecycleNodeInterface = rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface;
@@ -108,4 +108,4 @@ protected:
     BT::BehaviorTreeFactory         factory_;
 };
 }
-#endif //BT_ROS_NODE_
+#endif //BT_ROS_NODE_H_

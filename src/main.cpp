@@ -5,13 +5,14 @@
 
 #include "rclcpp/rclcpp.hpp"
 #include "rclcpp_lifecycle/lifecycle_node.hpp"
-#include "bt_ros_node.h"
+#include "ros2_behavior_tree_example/bt_ros_node.h"
 #include "std_msgs/msg/string.hpp"
 
 
 int main(int argc, char * argv[])
 {
   rclcpp::init(argc, argv);
+  // auto node =  bt_ros_example::BtRosNode();
   rclcpp_lifecycle::LifecycleNode::SharedPtr node = std::make_shared<bt_ros_example::BtRosNode>();
 
   // This is the same as rclcpp::spin(node);

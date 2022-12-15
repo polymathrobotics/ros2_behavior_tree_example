@@ -3,8 +3,8 @@
 #include "rclcpp_lifecycle/lifecycle_node.hpp"
 #include "std_msgs/msg/int32.hpp"
 
-#ifndef PONG_BT_NODE_
-#define PONG_BT_NODE_
+#ifndef PONG_BT_NODE_H_
+#define PONG_BT_NODE_H_
 
 
 namespace bt_ros_example
@@ -71,4 +71,4 @@ namespace bt_ros_example
     };
 }
 
-#endif // PONG_BT_NODE_
+#endif // PONG_BT_NODE_H_

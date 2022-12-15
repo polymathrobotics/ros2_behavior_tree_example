@@ -4,8 +4,8 @@
 #include "rclcpp_lifecycle/lifecycle_node.hpp"
 #include "std_msgs/msg/int32.hpp"
 
-#ifndef PUBLISH_STATUS_BT_NODE_
-#define PUBLISH_STATUS_BT_NODE_
+#ifndef PUBLISH_STATUS_BT_NODE_H_
+#define PUBLISH_STATUS_BT_NODE_H_
 
 
 namespace bt_ros_example
@@ -55,4 +55,4 @@ namespace bt_ros_example
     };
 }
 
-#endif // PUBLISH_STATUS_BT_NODE_
+#endif // PUBLISH_STATUS_BT_NODE_H_

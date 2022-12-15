@@ -3,8 +3,8 @@
 #include "rclcpp_lifecycle/lifecycle_node.hpp"
 #include "std_msgs/msg/int32.hpp"
 
-#ifndef PING_RECEIVED_NODE_
-#define PING_RECEIVED_NODE_
+#ifndef PING_RECEIVED_NODE_H_
+#define PING_RECEIVED_NODE_H_
 
 
 namespace bt_ros_example
@@ -59,4 +59,4 @@ namespace bt_ros_example
     };
 }
 
-#endif // PING_RECEIVED_NODE_
+#endif // PING_RECEIVED_NODE_H_

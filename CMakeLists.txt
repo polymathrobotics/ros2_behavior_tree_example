@@ -69,7 +69,7 @@ install(DIRECTORY include/
   DESTINATION include/
 )
 
-install(DIRECTORY launch config
+install(DIRECTORY launch config behavior_trees
   DESTINATION share/${PROJECT_NAME})
 
 if(BUILD_TESTING)

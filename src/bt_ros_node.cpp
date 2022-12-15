@@ -1,9 +1,9 @@
 #include <chrono>
 
-#include "bt_ros_node.h"
-#include "plugins/ping_received_bt_node.h"
-#include "plugins/pong_bt_node.h"
-#include "plugins/publish_status_bt_node.h"
+#include "ros2_behavior_tree_example/bt_ros_node.h"
+#include "ros2_behavior_tree_example/plugins/ping_received_bt_node.h"
+#include "ros2_behavior_tree_example/plugins/pong_bt_node.h"
+#include "ros2_behavior_tree_example/plugins/publish_status_bt_node.h"
 
 #include "behaviortree_cpp/blackboard.h"
 #include "rclcpp/publisher.hpp"
@@ -41,6 +41,9 @@ namespace bt_ros_example
         factory_.registerNodeType<PongNode>("PongNode");
         factory_.registerNodeType<PublishStatusNode>("PublishStatusNode");
     }
+
+    BtRosNode::~BtRosNode()
+    {}
 
     LifecycleNodeInterface::CallbackReturn
     BtRosNode::on_configure(const rclcpp_lifecycle::State &)
