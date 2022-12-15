@@ -72,7 +72,7 @@ namespace bt_ros_example
     }
 
     LifecycleNodeInterface::CallbackReturn
-    BtRosNode::on_activate(const rclcpp_lifecycle::State & state)
+    BtRosNode::on_activate(const rclcpp_lifecycle::State & /*state*/)
     {
         RCLCPP_INFO(this->get_logger(), "Starting the Timer and running Ticks");
         timer_->reset();
@@ -80,7 +80,7 @@ namespace bt_ros_example
     }
 
     LifecycleNodeInterface::CallbackReturn
-    BtRosNode::on_deactivate(const rclcpp_lifecycle::State & state)
+    BtRosNode::on_deactivate(const rclcpp_lifecycle::State & /*state*/)
     {
         RCLCPP_INFO(this->get_logger(), "Stopping Timer");
         timer_->cancel();
@@ -91,7 +91,7 @@ namespace bt_ros_example
     }
 
     LifecycleNodeInterface::CallbackReturn
-    BtRosNode::on_cleanup(const rclcpp_lifecycle::State & state)
+    BtRosNode::on_cleanup(const rclcpp_lifecycle::State & /*state*/)
     {
         blackboard_.reset();
         timer_.reset();
@@ -99,7 +99,7 @@ namespace bt_ros_example
     }
 
     rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn
-    BtRosNode::on_shutdown(const rclcpp_lifecycle::State & state)
+    BtRosNode::on_shutdown(const rclcpp_lifecycle::State & /*state*/)
     {
         return LifecycleNodeInterface::CallbackReturn::SUCCESS;
     }

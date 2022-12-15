@@ -2,8 +2,8 @@
 
 namespace bt_ros_example
 {
-    PublishStatusNode::PublishStatusNode(const std::string & condition_name, const BT::NodeConfig & conf)
-    : BT::SyncActionNode(condition_name, conf),
+    PublishStatusNode::PublishStatusNode(const std::string & action_name, const BT::NodeConfig & conf)
+    : BT::SyncActionNode(action_name, conf),
       print_ping_pong_(false)
     {
         node_ = conf.blackboard->get<rclcpp_lifecycle::LifecycleNode::SharedPtr>("node");
@@ -20,6 +20,11 @@ namespace bt_ros_example
         }
 
         message_ = msg.value();
+    }
+
+    PublishStatusNode::~PublishStatusNode()
+    {
+        RCLCPP_INFO(node_->get_logger(),"SHUTTING DOWN PUBLISH STATUS NODE");
     }
 
     BT::NodeStatus PublishStatusNode::tick()

@@ -4,8 +4,8 @@
 namespace bt_ros_example
 {
 
-    PongNode::PongNode(const std::string &condition_name, const BT::NodeConfig &conf)
-    : BT::StatefulActionNode(condition_name, conf),
+    PongNode::PongNode(const std::string &action_name, const BT::NodeConfig &conf)
+    : BT::StatefulActionNode(action_name, conf),
     pub_topic_("outgoing_pong")
     {
         node_ = conf.blackboard->get<rclcpp_lifecycle::LifecycleNode::SharedPtr>("node");
@@ -13,7 +13,7 @@ namespace bt_ros_example
                                                         rclcpp::SystemDefaultsQoS());
 
         pong_msg_.data = 0;
-
+        return;
     }
 
     PongNode::~PongNode()

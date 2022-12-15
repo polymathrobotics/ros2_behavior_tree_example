@@ -19,10 +19,11 @@ namespace bt_ros_example
     public:
         /**
          * @brief A constructor for a basic node that checks if a ping message has been received
-         * @param condition_name Name for the XML tag for this node
+         * @param action_name Name for the XML tag for this node
          * @param conf BT Node Configuration
         */
-        PublishStatusNode(const std::string & condition_name, const BT::NodeConfig & conf);
+        PublishStatusNode(const std::string & action_name, const BT::NodeConfig & conf);
+        
         ~PublishStatusNode();
 
         /**

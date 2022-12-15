@@ -55,10 +55,10 @@ add_executable(
 
 add_library(
   ${library_name}
-  src/bt_ros_node.cpp
   src/plugins/ping_received_bt_node.cpp
   src/plugins/pong_bt_node.cpp
   src/plugins/publish_status_bt_node.cpp
+  src/bt_ros_node.cpp
 )
 
 include_directories(

@@ -18,10 +18,10 @@ namespace bt_ros_example
     public:
         /**
          * @brief A constructor for a basic node that checks if a ping message has been received
-         * @param condition_name Name for the XML tag for this node
+         * @param action_name Name for the XML tag for this node
          * @param conf BT Node Configuration
         */
-        PongNode(const std::string & condition_name, const BT::NodeConfig & conf);
+        PongNode(const std::string & action_name, const BT::NodeConfig & conf);
         ~PongNode();
 
         /**
@@ -62,12 +62,12 @@ namespace bt_ros_example
         /**
          * @brief Subscription to the Ping message from a tertiary node
          * */
+        std::string                                             pub_topic_;
         rclcpp::Publisher<std_msgs::msg::Int32>::SharedPtr      pub_;
         rclcpp_lifecycle::LifecycleNode::SharedPtr              node_;
         int32_t                                                 curr_pong_in_burst_;
         int32_t                                                 num_pongs_;
         std_msgs::msg::Int32                                    pong_msg_;
-        std::string                                             pub_topic_;
     };
 }
 
