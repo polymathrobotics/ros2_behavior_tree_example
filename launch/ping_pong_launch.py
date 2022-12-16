@@ -12,15 +12,20 @@ import pdb
 
 def generate_launch_description():
     package_dir = Path(get_package_share_directory('ros2_behavior_tree_example'))
+    behavior_tree_dir = package_dir / 'behavior_trees'
 
+    # limit choices so we can only have available files
     mode_choices = ["sequence", "reactive_sequence"]
     tree_choices = ["ping_pong.xml", "ping_pong_no_decorator.xml", "ping_pong_executor.xml"]
+    enable_choices = ["True", "False"]
 
     node1_enable_arg = DeclareLaunchArgument("node1_enable", 
-                                            default_value="True", 
-                                            description="Enable Secondary Node in case you want to launch separately")
+                                            default_value="True",
+                                            choices=enable_choices,
+                                            description="Enable Primary Node in case you want to launch separately")
     node2_enable_arg = DeclareLaunchArgument("node2_enable", 
-                                            default_value="True", 
+                                            default_value="True",
+                                            choices=enable_choices,
                                             description="Enable Secondary Node in case you want to launch separately")
 
     node1_mode_arg = DeclareLaunchArgument("node1_mode", 
@@ -52,7 +57,7 @@ def generate_launch_description():
             "rate_hz" : 1.0,
             "num_republish": 5,
             "ping_starter" : True,
-            "behaviortree_file" : PathJoinSubstitution([str(package_dir / "behavior_trees"),
+            "behaviortree_file" : PathJoinSubstitution([str(behavior_tree_dir),
                                                         LaunchConfiguration("node1_mode"),
                                                         LaunchConfiguration("node1_behaviortree")])
         }]
@@ -69,7 +74,7 @@ def generate_launch_description():
             "rate_hz" : 0.75,
             "num_republish": 4,
             "ping_starter" : False,
-            "behaviortree_file" : PathJoinSubstitution([str(package_dir / "behavior_trees"),
+            "behaviortree_file" : PathJoinSubstitution([str(behavior_tree_dir),
                                                         LaunchConfiguration("node2_mode"),
                                                         LaunchConfiguration("node2_behaviortree")])
             }]
