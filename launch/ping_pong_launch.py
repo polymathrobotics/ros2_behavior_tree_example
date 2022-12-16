@@ -21,7 +21,7 @@ def generate_launch_description():
             "rate_hz" : 1.0,
             "num_republish": 5,
             "ping_starter" : True,
-            "behaviortree_file" : str(package_dir / "behavior_trees"/'ping_pong_no_decorator.xml')
+            "behaviortree_file" : str(package_dir / "behavior_trees"/'reactive_sequence'/'ping_pong_no_decorator.xml')
         }]
     )
 
@@ -35,7 +35,7 @@ def generate_launch_description():
             "rate_hz" : 0.75,
             "num_republish": 4,
             "ping_starter" : False,
-            "behaviortree_file" : str(package_dir / "behavior_trees"/'ping_pong.xml')
+            "behaviortree_file" : str(package_dir / "behavior_trees"/'reactive_sequence'/'ping_pong.xml')
             }]
     )
 

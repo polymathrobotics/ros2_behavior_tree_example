@@ -2,6 +2,7 @@
 
 #include "ros2_behavior_tree_example/bt_ros_node.h"
 #include "ros2_behavior_tree_example/plugins/ping_received_bt_node.h"
+#include "ros2_behavior_tree_example/plugins/ping_received_executor_bt_node.h"
 #include "ros2_behavior_tree_example/plugins/pong_bt_node.h"
 #include "ros2_behavior_tree_example/plugins/publish_status_bt_node.h"
 
@@ -38,6 +39,7 @@ namespace bt_ros_example
 
         // Register Nodes into the Factory to generate a tree later
         factory_.registerNodeType<PingReceivedNode>("PingReceivedNode");
+        factory_.registerNodeType<PingReceivedExecutorNode>("PingReceivedExecutorNode");
         factory_.registerNodeType<PongNode>("PongNode");
         factory_.registerNodeType<PublishStatusNode>("PublishStatusNode");
     }
