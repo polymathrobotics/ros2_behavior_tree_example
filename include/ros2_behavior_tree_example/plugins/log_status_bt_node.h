@@ -4,8 +4,8 @@
 #include "rclcpp_lifecycle/lifecycle_node.hpp"
 #include "std_msgs/msg/int32.hpp"
 
-#ifndef PUBLISH_STATUS_BT_NODE_H_
-#define PUBLISH_STATUS_BT_NODE_H_
+#ifndef LOG_STATUS_BT_NODE_H_
+#define LOG_STATUS_BT_NODE_H_
 
 
 namespace bt_ros_example
@@ -14,7 +14,7 @@ namespace bt_ros_example
      * @brief Async Action Node that shoots out a pong
      * 
     */
-    class PublishStatusNode : public BT::SyncActionNode
+    class LogStatusNode : public BT::SyncActionNode
     {
     public:
         /**
@@ -22,9 +22,9 @@ namespace bt_ros_example
          * @param action_name Name for the XML tag for this node
          * @param conf BT Node Configuration
         */
-        PublishStatusNode(const std::string & action_name, const BT::NodeConfig & conf);
+        LogStatusNode(const std::string & action_name, const BT::NodeConfig & conf);
         
-        ~PublishStatusNode();
+        ~LogStatusNode();
 
         /**
         * @brief Creates list of BT ports
@@ -56,4 +56,4 @@ namespace bt_ros_example
     };
 }
 
-#endif // PUBLISH_STATUS_BT_NODE_H_
+#endif // LOG_STATUS_BT_NODE_H_

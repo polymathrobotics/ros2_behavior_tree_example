@@ -3,17 +3,17 @@
 #include "rclcpp_lifecycle/lifecycle_node.hpp"
 #include "std_msgs/msg/int32.hpp"
 
-#ifndef PONG_BT_NODE_H_
-#define PONG_BT_NODE_H_
+#ifndef PING_BT_NODE_H_
+#define PING_BT_NODE_H_
 
 
 namespace bt_ros_example
 {
     /**
-     * @brief Async Action Node that shoots out a pong
+     * @brief Async Action Node that shoots out a ping
      * 
     */
-    class PongNode : public BT::StatefulActionNode
+    class PingNode : public BT::StatefulActionNode
     {
     public:
         /**
@@ -21,8 +21,8 @@ namespace bt_ros_example
          * @param action_name Name for the XML tag for this node
          * @param conf BT Node Configuration
         */
-        PongNode(const std::string & action_name, const BT::NodeConfig & conf);
-        ~PongNode();
+        PingNode(const std::string & action_name, const BT::NodeConfig & conf);
+        ~PingNode();
 
         /**
         * @brief Creates list of BT ports
@@ -31,8 +31,8 @@ namespace bt_ros_example
         static BT::PortsList providedPorts()
         {
             return {
-                BT::InputPort<int32_t>("num_pongs"),
-                BT::OutputPort<int32_t>("last_pong_id")
+                BT::InputPort<int32_t>("num_pings"),
+                BT::OutputPort<int32_t>("last_ping_id")
             };
         }
 
@@ -54,7 +54,7 @@ namespace bt_ros_example
         void onHalted() override;
 
         /**
-         * @brief Publishes the current pong
+         * @brief Publishes the current ping
         */
         void publish();
 
@@ -65,10 +65,10 @@ namespace bt_ros_example
         std::string                                             pub_topic_;
         rclcpp::Publisher<std_msgs::msg::Int32>::SharedPtr      pub_;
         rclcpp_lifecycle::LifecycleNode::SharedPtr              node_;
-        int32_t                                                 curr_pong_in_burst_;
-        int32_t                                                 num_pongs_;
-        std_msgs::msg::Int32                                    pong_msg_;
+        int32_t                                                 curr_ping_in_burst_;
+        int32_t                                                 num_pings_;
+        std_msgs::msg::Int32                                    ping_msg_;
     };
 }
 
-#endif // PONG_BT_NODE_H_
+#endif // PING_BT_NODE_H_

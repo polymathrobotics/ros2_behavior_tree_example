@@ -1,54 +1,54 @@
-#include "ros2_behavior_tree_example/plugins/pong_bt_node.h"
+#include "ros2_behavior_tree_example/plugins/ping_bt_node.h"
 #include "std_msgs/msg/int32.hpp"
 
 namespace bt_ros_example
 {
 
-    PongNode::PongNode(const std::string &action_name, const BT::NodeConfig &conf)
+    PingNode::PingNode(const std::string &action_name, const BT::NodeConfig &conf)
     : BT::StatefulActionNode(action_name, conf),
-    pub_topic_("outgoing_pong")
+    pub_topic_("outgoing_ping")
     {
         node_ = conf.blackboard->get<rclcpp_lifecycle::LifecycleNode::SharedPtr>("node");
         pub_ = node_->create_publisher<std_msgs::msg::Int32>(pub_topic_,
                                                         rclcpp::SystemDefaultsQoS());
 
-        pong_msg_.data = 0;
+        ping_msg_.data = 0;
         return;
     }
 
-    PongNode::~PongNode()
+    PingNode::~PingNode()
     {
-        RCLCPP_INFO(node_->get_logger(),"SHUTTING DOWN PONG NODE");
+        RCLCPP_INFO(node_->get_logger(),"SHUTTING DOWN PING NODE");
     }
 
-    BT::NodeStatus PongNode::onStart()
+    BT::NodeStatus PingNode::onStart()
     {
-        getInput<int32_t>("num_pongs", num_pongs_ );
-        curr_pong_in_burst_ = 0;
+        getInput<int32_t>("num_pings", num_pings_ );
+        curr_ping_in_burst_ = 0;
 
-        RCLCPP_INFO(node_->get_logger(), "STARTING PONG");
+        RCLCPP_INFO(node_->get_logger(), "STARTING PING");
 
         publish();
 
         
-        if(num_pongs_ <= 1)
+        if(num_pings_ <= 1)
         {
             return BT::NodeStatus::SUCCESS;
         }
 
-        curr_pong_in_burst_++;
+        curr_ping_in_burst_++;
         return BT::NodeStatus::RUNNING;
     }
 
-    BT::NodeStatus PongNode::onRunning()
+    BT::NodeStatus PingNode::onRunning()
     {
-        RCLCPP_INFO(node_->get_logger(), "RUNNING PONG");
+        RCLCPP_INFO(node_->get_logger(), "RUNNING PING");
         
         // always start by publishing
         publish();
-        curr_pong_in_burst_++;
+        curr_ping_in_burst_++;
 
-        if(curr_pong_in_burst_ == num_pongs_)
+        if(curr_ping_in_burst_ == num_pings_)
         {
             return BT::NodeStatus::SUCCESS;
         }
@@ -56,18 +56,18 @@ namespace bt_ros_example
         return BT::NodeStatus::RUNNING;
     }
 
-    void PongNode::onHalted()
+    void PingNode::onHalted()
     {
         // Do any necessary cleanup for the running nodes
         RCLCPP_INFO(node_->get_logger(), "HALTING RUN");
         return;
     }
 
-    void PongNode::publish()
+    void PingNode::publish()
     {
-        pong_msg_.data++;
-        setOutput("last_pong_id", pong_msg_.data);
-        pub_->publish(pong_msg_);
+        ping_msg_.data++;
+        setOutput("last_ping_id", ping_msg_.data);
+        pub_->publish(ping_msg_);
     }
 
 

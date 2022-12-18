@@ -31,3 +31,29 @@ ros@docker-desktop:/workspaces/ros2_ws$ ros2 launch ros2_behavior_tree_example p
             Set behavior tree file to use desired nodes. Valid choices are: ['ping_pong.xml', 'ping_pong_no_decorator.xml', 'ping_pong_executor.xml']
             (default: 'ping_pong_no_decorator.xml')
 ```
+
+# Activate the behavior tree nodes
+## Primary Node
+```bash
+> ros2 lifecycle set /primary_ping_pong configure
+Transitioning successful
+
+> ros2 lifecycle set /primary_ping_pong activate
+Transitioning successful
+```
+
+### Secondary Node
+```bash
+> ros2 lifecycle set /primary_ping_pong configure
+Transitioning successful
+
+> ros2 lifecycle set /primary_ping_pong activate
+Transitioning successful
+```
+
+# General Lifecycle Node Commands
+```bash
+ros2 lifecycle get /NODE_NAME # returns lifecycle node status
+ros2 lifecycle list /NODE_NAME # returns all lifecycles we can transition to
+ros2 lifecycle set /NODE_NAME # allows you to set a valid lifecycle from available transitions
+```

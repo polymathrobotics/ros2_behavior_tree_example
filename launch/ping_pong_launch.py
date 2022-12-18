@@ -52,7 +52,7 @@ def generate_launch_description():
         executable='behavior_tree_example',
         name='primary_ping_pong',
         output='screen',
-        remappings=[('incoming_ping', 'secondary_to_primary'),('outgoing_pong', 'primary_to_secondary')],
+        remappings=[('incoming_pong', 'secondary_to_primary'),('outgoing_ping', 'primary_to_secondary')],
         parameters=[{
             "rate_hz" : 1.0,
             "num_republish": 5,
@@ -69,7 +69,7 @@ def generate_launch_description():
         executable='behavior_tree_example',
         name='secondary_ping_pong',
         output='screen',
-        remappings=[('incoming_ping', 'primary_to_secondary'),('outgoing_pong', 'secondary_to_primary')],
+        remappings=[('incoming_pong', 'primary_to_secondary'),('outgoing_ping', 'secondary_to_primary')],
         parameters=[{            
             "rate_hz" : 0.75,
             "num_republish": 4,

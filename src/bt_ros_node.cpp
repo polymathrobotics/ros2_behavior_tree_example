@@ -1,10 +1,10 @@
 #include <chrono>
 
 #include "ros2_behavior_tree_example/bt_ros_node.h"
-#include "ros2_behavior_tree_example/plugins/ping_received_bt_node.h"
-#include "ros2_behavior_tree_example/plugins/ping_received_executor_bt_node.h"
-#include "ros2_behavior_tree_example/plugins/pong_bt_node.h"
-#include "ros2_behavior_tree_example/plugins/publish_status_bt_node.h"
+#include "ros2_behavior_tree_example/plugins/pong_received_bt_node.h"
+#include "ros2_behavior_tree_example/plugins/pong_received_executor_bt_node.h"
+#include "ros2_behavior_tree_example/plugins/ping_bt_node.h"
+#include "ros2_behavior_tree_example/plugins/log_status_bt_node.h"
 
 #include "behaviortree_cpp/blackboard.h"
 #include "rclcpp/publisher.hpp"
@@ -38,14 +38,17 @@ namespace bt_ros_example
         this->declare_parameter("behaviortree_file", "behavior_trees/ping_pong_no_decorator.xml");
 
         // Register Nodes into the Factory to generate a tree later
-        factory_.registerNodeType<PingReceivedNode>("PingReceivedNode");
-        factory_.registerNodeType<PingReceivedExecutorNode>("PingReceivedExecutorNode");
-        factory_.registerNodeType<PongNode>("PongNode");
-        factory_.registerNodeType<PublishStatusNode>("PublishStatusNode");
+        factory_.registerNodeType<PongReceivedNode>("PongReceivedNode");
+        factory_.registerNodeType<PongReceivedExecutorNode>("PongReceivedExecutorNode");
+        factory_.registerNodeType<PingNode>("PingNode");
+        factory_.registerNodeType<LogStatusNode>("LogStatusNode");
     }
 
     BtRosNode::~BtRosNode()
-    {}
+    {
+        on_deactivate(get_current_state());
+        on_cleanup(get_current_state());
+    }
 
     LifecycleNodeInterface::CallbackReturn
     BtRosNode::on_configure(const rclcpp_lifecycle::State &)
@@ -105,6 +108,9 @@ namespace bt_ros_example
     rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn
     BtRosNode::on_shutdown(const rclcpp_lifecycle::State & /*state*/)
     {
+        on_deactivate(get_current_state());
+        on_cleanup(get_current_state());
+
         return LifecycleNodeInterface::CallbackReturn::SUCCESS;
     }
 

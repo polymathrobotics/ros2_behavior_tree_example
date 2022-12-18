@@ -3,27 +3,27 @@
 #include "rclcpp_lifecycle/lifecycle_node.hpp"
 #include "std_msgs/msg/int32.hpp"
 
-#ifndef PING_RECEIVED_NODE_H_
-#define PING_RECEIVED_NODE_H_
+#ifndef PONG_RECEIVED_NODE_H_
+#define PONG_RECEIVED_NODE_H_
 
 
 namespace bt_ros_example
 {
     /**
-     * @brief Condition Node that tells us whether a ping has been received
+     * @brief Condition Node that tells us whether a pong has been received
      * 
     */
-    class PingReceivedNode : public BT::ConditionNode
+    class PongReceivedNode : public BT::ConditionNode
     {
     public:
         /**
-         * @brief A constructor for a basic node that checks if a ping message has been received
+         * @brief A constructor for a basic node that checks if a pong message has been received
          * @param condition_name Name for the XML tag for this node
          * @param conf BT Node Configuration
         */
-        PingReceivedNode(const std::string & condition_name, const BT::NodeConfig & conf);
-        PingReceivedNode() = delete;
-        ~PingReceivedNode();
+        PongReceivedNode(const std::string & condition_name, const BT::NodeConfig & conf);
+        PongReceivedNode() = delete;
+        ~PongReceivedNode();
 
         /**
         * @brief Creates list of BT ports
@@ -32,8 +32,8 @@ namespace bt_ros_example
         static BT::PortsList providedPorts()
         {
             return {
-                BT::InputPort<bool>("force_ping"),
-                BT::OutputPort<int32_t>("last_ping_id"),
+                BT::InputPort<bool>("force_pong"),
+                BT::OutputPort<int32_t>("last_pong_id"),
             };
         }
 
@@ -44,19 +44,19 @@ namespace bt_ros_example
         BT::NodeStatus tick() override;
 
         /**
-         * @brief Record the last received ping
+         * @brief Record the last received pong
         */
-       void ping_callback(std_msgs::msg::Int32::SharedPtr msg);
+       void pong_callback(std_msgs::msg::Int32::SharedPtr msg);
 
     private:
         /**
-         * @brief Subscription to the Ping message from a tertiary node
+         * @brief Subscription to the pong message from a tertiary node
          * */
         std::string                                             sub_topic_;
-        int32_t                                                 ping_id_received_;
+        int32_t                                                 pong_id_received_;
         rclcpp::Subscription<std_msgs::msg::Int32>::SharedPtr   sub_;
         rclcpp_lifecycle::LifecycleNode::SharedPtr              node_;
     };
 }
 
-#endif // PING_RECEIVED_NODE_H_
+#endif // PONG_RECEIVED_NODE_H_
