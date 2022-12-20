@@ -54,13 +54,15 @@ add_executable(
 )
 
 add_library(
-  ${library_name}
+  ${library_name} SHARED
   src/plugins/pong_received_bt_node.cpp
   src/plugins/pong_received_executor_bt_node.cpp
   src/plugins/ping_bt_node.cpp
   src/plugins/log_status_bt_node.cpp
   src/bt_ros_node.cpp
 )
+
+rclcpp_components_register_nodes(${library_name} "bt_ros_example::BtRosNode")
 
 include_directories(
   include
