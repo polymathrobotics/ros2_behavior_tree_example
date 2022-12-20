@@ -57,3 +57,47 @@ ros2 lifecycle get /NODE_NAME # returns lifecycle node status
 ros2 lifecycle list /NODE_NAME # returns all lifecycles we can transition to
 ros2 lifecycle set /NODE_NAME # allows you to set a valid lifecycle from available transitions
 ```
+
+# Behavior Trees Supplied
+
+## Nodes Used Brief Definitions
+
+## Select Behavior Trees 
+### Sequence/ping_pong.xml
+This behavior tree utilizes a decorator to make the pong node repeatedly publish.
+
+```mermaid
+graph TD
+  Root --> FallBack
+  FallBack --> Sequence 
+  FallBack --> LogStatus
+  
+  Sequence --> PongReceived
+  Sequence --> RepeatDecorator --> PingNode 
+```
+
+### Sequence/ping_pong_no_decorator.xml
+This behavior tree utilizes the async behavior of the ping node to repeatedly publish
+
+```mermaid
+graph TD;
+  Root --> FallBack
+  FallBack --> Sequence 
+  FallBack --> LogStatus
+  
+  Sequence --> PongReceived
+  Sequence --> PingNode
+```
+
+### Sequence/ping_pong_no_decorator.xml
+This behavior tree is the same as ping_pong
+
+```mermaid
+graph TD;
+  Root --> FallBack
+  FallBack --> Sequence 
+  FallBack --> LogStatus
+  
+  Sequence --> PongReceivedExecutor
+  Sequence --> PingNode
+```
