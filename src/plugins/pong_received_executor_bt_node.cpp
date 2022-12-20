@@ -38,7 +38,7 @@ namespace bt_ros_example
 
     PongReceivedExecutorNode::~PongReceivedExecutorNode()
     {
-        RCLCPP_INFO(node_->get_logger(), "SHUTTING DOWN pong RECEIVED NODE");
+        RCLCPP_INFO(node_->get_logger(), "SHUTTING DOWN PONG RECEIVED NODE");
 
         // cancel stops the executor if it's spinning
         executor_.cancel();
@@ -62,6 +62,8 @@ namespace bt_ros_example
             return BT::NodeStatus::FAILURE;
         }
 
+        RCLCPP_INFO(node_->get_logger(), "TICK::PONG_NODE");
+        
         // record last pong id received so that other nodes could use it
         setOutput("last_pong_id", pong_id_received_);
 
@@ -72,7 +74,7 @@ namespace bt_ros_example
 
     void PongReceivedExecutorNode::pong_callback(std_msgs::msg::Int32::SharedPtr msg)
     {
-        RCLCPP_INFO(node_->get_logger(), "RECEIVED pong WITH ID %d", msg->data);
+        RCLCPP_INFO(node_->get_logger(), "RECEIVED PONG WITH ID %d", msg->data);
         pong_id_received_ = msg->data;
         return;
     }
