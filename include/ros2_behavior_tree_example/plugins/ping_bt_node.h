@@ -1,10 +1,10 @@
+#ifndef PING_BT_NODE_H_
+#define PING_BT_NODE_H_
+
 #include "behaviortree_cpp/behavior_tree.h"
 #include "rclcpp/rclcpp.hpp"
 #include "rclcpp_lifecycle/lifecycle_node.hpp"
 #include "std_msgs/msg/int32.hpp"
-
-#ifndef PING_BT_NODE_H_
-#define PING_BT_NODE_H_
 
 
 namespace bt_ros_example

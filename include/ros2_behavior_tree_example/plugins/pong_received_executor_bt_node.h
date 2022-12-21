@@ -1,11 +1,10 @@
+#ifndef PONG_RECEIVED_EXECUTOR_NODE_
+#define PONG_RECEIVED_EXECUTOR_NODE_
+
 #include "behaviortree_cpp/behavior_tree.h"
 #include "rclcpp/rclcpp.hpp"
 #include "rclcpp_lifecycle/lifecycle_node.hpp"
 #include "std_msgs/msg/int32.hpp"
-
-#ifndef PONG_RECEIVED_EXECUTOR_NODE_
-#define PONG_RECEIVED_EXECUTOR_NODE_
-
 
 namespace bt_ros_example
 {

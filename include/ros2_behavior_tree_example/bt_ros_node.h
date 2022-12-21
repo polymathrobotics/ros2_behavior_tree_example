@@ -1,3 +1,6 @@
+#ifndef BT_ROS_NODE_H_
+#define BT_ROS_NODE_H_
+
 #include "rclcpp/rclcpp.hpp"
 #include "lifecycle_msgs/msg/transition.hpp"
 #include "rclcpp_lifecycle/lifecycle_node.hpp"
@@ -6,14 +9,11 @@
 #include "behaviortree_cpp/behavior_tree.h"
 #include "behaviortree_cpp/bt_factory.h"
 
-#ifndef BT_ROS_NODE_H_
-#define BT_ROS_NODE_H_
-
+namespace bt_ros_example
+{
 
 using LifecycleNodeInterface = rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface;
 
-namespace bt_ros_example
-{
 /**
  * @class bt_ros_example::BtRosNode
  * @brief a ros node that implements a behavior tree based to publish and subscribe 

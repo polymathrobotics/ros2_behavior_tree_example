@@ -1,12 +1,11 @@
+#ifndef LOG_STATUS_BT_NODE_H_
+#define LOG_STATUS_BT_NODE_H_
+
 #include <string>
 #include "behaviortree_cpp/behavior_tree.h"
 #include "rclcpp/rclcpp.hpp"
 #include "rclcpp_lifecycle/lifecycle_node.hpp"
 #include "std_msgs/msg/int32.hpp"
-
-#ifndef LOG_STATUS_BT_NODE_H_
-#define LOG_STATUS_BT_NODE_H_
-
 
 namespace bt_ros_example
 {
