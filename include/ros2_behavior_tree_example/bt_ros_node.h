@@ -9,10 +9,10 @@
 #include "behaviortree_cpp/behavior_tree.h"
 #include "behaviortree_cpp/bt_factory.h"
 
+namespace polymath
+{
 namespace bt_ros_example
 {
-
-using LifecycleNodeInterface = rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface;
 
 /**
  * @class bt_ros_example::BtRosNode
@@ -44,7 +44,7 @@ protected:
      * 
      * @return SUCCESS or FAILIURE
     */
-    LifecycleNodeInterface::CallbackReturn
+    rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn
     on_configure(const rclcpp_lifecycle::State &);
 
     /**
@@ -57,7 +57,7 @@ protected:
      * 
      * @return SUCCESS or FAILIURE
     */
-    LifecycleNodeInterface::CallbackReturn
+    rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn
     on_activate(const rclcpp_lifecycle::State & state);
 
     /**
@@ -70,7 +70,7 @@ protected:
      * 
      * @return SUCCESS or FAILIURE
     */
-    LifecycleNodeInterface::CallbackReturn
+    rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn
     on_deactivate(const rclcpp_lifecycle::State & state);
 
     /**
@@ -83,7 +83,7 @@ protected:
      * 
      * @return SUCCESS or FAILIURE
     */
-    LifecycleNodeInterface::CallbackReturn
+    rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn
     on_cleanup(const rclcpp_lifecycle::State & state);
 
     /**
@@ -107,5 +107,6 @@ protected:
     BT::Tree                        tree_;
     BT::BehaviorTreeFactory         factory_;
 };
+}
 }
 #endif //BT_ROS_NODE_H_

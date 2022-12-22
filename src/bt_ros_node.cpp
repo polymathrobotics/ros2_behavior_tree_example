@@ -14,8 +14,12 @@
 
 using namespace std::chrono_literals;
 
+namespace polymath
+{
 namespace bt_ros_example
 {
+    using LifecycleNodeInterface = rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface;
+
     BtRosNode::BtRosNode(const rclcpp::NodeOptions &options)
     : rclcpp_lifecycle::LifecycleNode("bt_ros_node", "", options)
     {
@@ -100,6 +104,7 @@ namespace bt_ros_example
     LifecycleNodeInterface::CallbackReturn
     BtRosNode::on_cleanup(const rclcpp_lifecycle::State & /*state*/)
     {
+        RCLCPP_INFO(this->get_logger(), "Cleaning Up");
         blackboard_.reset();
         timer_.reset();
         return LifecycleNodeInterface::CallbackReturn::SUCCESS;
@@ -111,6 +116,7 @@ namespace bt_ros_example
         on_deactivate(get_current_state());
         on_cleanup(get_current_state());
 
+        RCLCPP_INFO(this->get_logger(), "Shutting Down");
         return LifecycleNodeInterface::CallbackReturn::SUCCESS;
     }
 
@@ -121,7 +127,7 @@ namespace bt_ros_example
         tree_.tickOnce();
         return;
     }
-
+}
 }
 
 #include "rclcpp_components/register_node_macro.hpp"
@@ -129,4 +135,4 @@ namespace bt_ros_example
 // Register the component with class_loader.
 // This acts as a sort of entry point, allowing the component to be discoverable when its library
 // is being loaded into a running process.
-RCLCPP_COMPONENTS_REGISTER_NODE(bt_ros_example::BtRosNode)
+RCLCPP_COMPONENTS_REGISTER_NODE(polymath::bt_ros_example::BtRosNode)

@@ -6,6 +6,8 @@
 #include "rclcpp_lifecycle/lifecycle_node.hpp"
 #include "std_msgs/msg/int32.hpp"
 
+namespace polymath
+{
 namespace bt_ros_example
 {
     /**
@@ -56,6 +58,7 @@ namespace bt_ros_example
         rclcpp::Subscription<std_msgs::msg::Int32>::SharedPtr   sub_;
         rclcpp_lifecycle::LifecycleNode::SharedPtr              node_;
     };
+}
 }
 
 #endif // PONG_RECEIVED_NODE_H_

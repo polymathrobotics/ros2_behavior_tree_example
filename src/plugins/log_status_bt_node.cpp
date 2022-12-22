@@ -1,5 +1,7 @@
 #include "ros2_behavior_tree_example/plugins/log_status_bt_node.h"
 
+namespace polymath
+{
 namespace bt_ros_example
 {
     LogStatusNode::LogStatusNode(const std::string & action_name, const BT::NodeConfig & conf)
@@ -42,4 +44,5 @@ namespace bt_ros_example
 
         return BT::NodeStatus::SUCCESS;
     }
+}
 }

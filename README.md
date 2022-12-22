@@ -3,7 +3,7 @@ Toy example for running a simple behavior tree with ROS2
 
 # Launch Arguments to Launch the Test Nodes
 ```bash
-ros@docker-desktop:/workspaces/ros2_ws$ ros2 launch ros2_behavior_tree_example ping_pong_launch.py -s
+ros2 launch ros2_behavior_tree_example ping_pong_launch.py -s
 
     Arguments (pass arguments as '<name>:=<value>'):
 

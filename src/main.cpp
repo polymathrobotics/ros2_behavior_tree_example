@@ -13,7 +13,7 @@ int main(int argc, char * argv[])
 {
   rclcpp::init(argc, argv);
 
-  rclcpp_lifecycle::LifecycleNode::SharedPtr node = std::make_shared<bt_ros_example::BtRosNode>();
+  rclcpp_lifecycle::LifecycleNode::SharedPtr node = std::make_shared<polymath::bt_ros_example::BtRosNode>();
 
   // // This is the same as rclcpp::spin(node);
   rclcpp::executors::SingleThreadedExecutor executor;

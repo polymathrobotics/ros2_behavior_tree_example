@@ -7,6 +7,8 @@
 #include "rclcpp_lifecycle/lifecycle_node.hpp"
 #include "std_msgs/msg/int32.hpp"
 
+namespace polymath
+{
 namespace bt_ros_example
 {
     /**
@@ -53,6 +55,7 @@ namespace bt_ros_example
         std::string                                             message_;
         bool                                                    print_ping_pong_;
     };
+}
 }
 
 #endif // LOG_STATUS_BT_NODE_H_

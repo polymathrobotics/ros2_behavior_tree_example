@@ -1,5 +1,7 @@
 #include "ros2_behavior_tree_example/plugins/pong_received_bt_node.h"
 
+namespace polymath
+{
 namespace bt_ros_example
 {
     PongReceivedNode::PongReceivedNode(const std::string & condition_name, const BT::NodeConfig & conf)
@@ -56,4 +58,5 @@ namespace bt_ros_example
         pong_id_received_ = msg->data;
         return;
     }
+}
 }

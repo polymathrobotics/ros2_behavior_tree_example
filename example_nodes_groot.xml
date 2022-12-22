@@ -1,7 +1,5 @@
 <?xml version="1.0"?>
-<!--
-  FLoad this in groot through the load pallet command!
--->
+<!-- Load this in groot through the load pallet command!-->
 <root>
   <TreeNodesModel>
     <!-- ############################### ACTION NODES ################################# -->

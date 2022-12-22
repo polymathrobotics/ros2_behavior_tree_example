@@ -7,6 +7,8 @@
 #include "std_msgs/msg/int32.hpp"
 
 
+namespace polymath
+{
 namespace bt_ros_example
 {
     /**
@@ -69,6 +71,7 @@ namespace bt_ros_example
         int32_t                                                 num_pings_;
         std_msgs::msg::Int32                                    ping_msg_;
     };
+}
 }
 
 #endif // PING_BT_NODE_H_

@@ -62,7 +62,7 @@ add_library(
   src/bt_ros_node.cpp
 )
 
-rclcpp_components_register_nodes(${library_name} "bt_ros_example::BtRosNode")
+rclcpp_components_register_nodes(${library_name} "polymath::bt_ros_example::BtRosNode")
 
 include_directories(
   include
