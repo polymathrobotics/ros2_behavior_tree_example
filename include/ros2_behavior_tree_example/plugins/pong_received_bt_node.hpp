@@ -10,26 +10,26 @@ namespace polymath
 {
 namespace bt_ros_example
 {
-    /**
-     * @brief Condition Node that tells us whether a pong has been received
-     * 
-    */
+    ///
+    /// @brief Condition Node that tells us whether a pong has been received
+    ///
+    ///
     class PongReceivedNode : public BT::ConditionNode
     {
     public:
-        /**
-         * @brief A constructor for a basic node that checks if a pong message has been received
-         * @param condition_name Name for the XML tag for this node
-         * @param conf BT Node Configuration
-        */
+        ///
+        /// @brief A constructor for a basic node that checks if a pong message has been received
+        /// @param condition_name Name for the XML tag for this node
+        /// @param conf BT Node Configuration
+        ///
         PongReceivedNode(const std::string & condition_name, const BT::NodeConfig & conf);
         PongReceivedNode() = delete;
         ~PongReceivedNode();
 
-        /**
-        * @brief Creates list of BT ports
-        * @return BT::PortsList Containing node-specific ports
-        */
+        ///
+        ///@brief Creates list of BT ports
+        ///@return BT::PortsList Containing node-specific ports
+        ///
         static BT::PortsList providedPorts()
         {
             return {
@@ -38,21 +38,21 @@ namespace bt_ros_example
             };
         }
 
-        /**
-         * @brief The main behavior call when this node is run
-         * @return NodeStatus Success or Failiure
-        */
+        ///
+        /// @brief The main behavior call when this node is run
+        /// @return NodeStatus Success or Failiure
+        ///
         BT::NodeStatus tick() override;
 
-        /**
-         * @brief Record the last received pong
-        */
+        ///
+        /// @brief Record the last received pong
+        ///
        void pong_callback(std_msgs::msg::Int32::SharedPtr msg);
 
     private:
-        /**
-         * @brief Subscription to the pong message from a tertiary node
-         * */
+        ///
+        /// @brief Subscription to the pong message from a tertiary node
+        ///
         std::string                                             sub_topic_;
         int32_t                                                 pong_id_received_;
         rclcpp::Subscription<std_msgs::msg::Int32>::SharedPtr   sub_;

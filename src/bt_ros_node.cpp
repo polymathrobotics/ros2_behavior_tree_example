@@ -1,10 +1,10 @@
 #include <chrono>
 
-#include "ros2_behavior_tree_example/bt_ros_node.h"
-#include "ros2_behavior_tree_example/plugins/pong_received_bt_node.h"
-#include "ros2_behavior_tree_example/plugins/pong_received_executor_bt_node.h"
-#include "ros2_behavior_tree_example/plugins/ping_bt_node.h"
-#include "ros2_behavior_tree_example/plugins/log_status_bt_node.h"
+#include "ros2_behavior_tree_example/bt_ros_node.hpp"
+#include "ros2_behavior_tree_example/plugins/pong_received_bt_node.hpp"
+#include "ros2_behavior_tree_example/plugins/pong_received_executor_bt_node.hpp"
+#include "ros2_behavior_tree_example/plugins/ping_bt_node.hpp"
+#include "ros2_behavior_tree_example/plugins/log_status_bt_node.hpp"
 
 #include "behaviortree_cpp/blackboard.h"
 #include "rclcpp/publisher.hpp"

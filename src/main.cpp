@@ -5,7 +5,7 @@
 
 #include "rclcpp/rclcpp.hpp"
 #include "rclcpp_lifecycle/lifecycle_node.hpp"
-#include "ros2_behavior_tree_example/bt_ros_node.h"
+#include "ros2_behavior_tree_example/bt_ros_node.hpp"
 #include "std_msgs/msg/string.hpp"
 
 

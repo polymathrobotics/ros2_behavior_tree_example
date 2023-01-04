@@ -1,4 +1,4 @@
-#include "ros2_behavior_tree_example/plugins/ping_bt_node.h"
+#include "ros2_behavior_tree_example/plugins/ping_bt_node.hpp"
 #include "std_msgs/msg/int32.hpp"
 
 namespace polymath

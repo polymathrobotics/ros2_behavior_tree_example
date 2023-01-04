@@ -1,4 +1,4 @@
-#include "ros2_behavior_tree_example/plugins/pong_received_executor_bt_node.h"
+#include "ros2_behavior_tree_example/plugins/pong_received_executor_bt_node.hpp"
 
 namespace polymath
 {

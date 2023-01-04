@@ -11,25 +11,25 @@ namespace polymath
 {
 namespace bt_ros_example
 {
-    /**
-     * @brief Async Action Node that shoots out a ping
-     * 
-    */
+    ///
+    /// @brief Async Action Node that shoots out a ping
+    /// 
+    ///
     class PingNode : public BT::StatefulActionNode
     {
     public:
-        /**
-         * @brief A constructor for a basic node that checks if a ping message has been received
-         * @param action_name Name for the XML tag for this node
-         * @param conf BT Node Configuration
-        */
+        ///
+        /// @brief A constructor for a basic node that checks if a ping message has been received
+        /// @param action_name Name for the XML tag for this node
+        /// @param conf BT Node Configuration
+        ///
         PingNode(const std::string & action_name, const BT::NodeConfig & conf);
         ~PingNode();
 
-        /**
-        * @brief Creates list of BT ports
-        * @return BT::PortsList Containing node-specific ports
-        */
+        ///
+        /// @brief Creates list of BT ports
+        /// @return BT::PortsList Containing node-specific ports
+        ///
         static BT::PortsList providedPorts()
         {
             return {
@@ -38,32 +38,32 @@ namespace bt_ros_example
             };
         }
 
-        /**
-         * @brief When we first enter this node we "start" the node
-         * @return NodeStatus RUNNING or FAILIURE
-        */
+        ///
+        /// @brief When we first enter this node we "start" the node
+        /// @return NodeStatus RUNNING or FAILIURE
+        ///
         BT::NodeStatus onStart() override;
 
-        /**
-         * @brief The main behavior call when this node is run
-         * @return NodeStatus RUNNING or SUCCESS 
-        */
+        ///
+        /// @brief The main behavior call when this node is run
+        /// @return NodeStatus RUNNING or SUCCESS 
+        ///
         BT::NodeStatus onRunning() override;
 
-        /**
-         * @brief Halts whatever is running next tick
-        */
+        ///
+        /// @brief Halts whatever is running next tick
+        ///
         void onHalted() override;
 
-        /**
-         * @brief Publishes the current ping
-        */
+        ///
+        /// @brief Publishes the current ping
+        ///
         void publish();
 
     private:
-        /**
-         * @brief Subscription to the Ping message from a tertiary node
-         * */
+        ///
+        /// @brief Subscription to the Ping message from a tertiary node
+        ///*/
         std::string                                             pub_topic_;
         rclcpp::Publisher<std_msgs::msg::Int32>::SharedPtr      pub_;
         rclcpp_lifecycle::LifecycleNode::SharedPtr              node_;
