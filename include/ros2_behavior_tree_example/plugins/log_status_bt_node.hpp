@@ -51,9 +51,9 @@ namespace bt_ros_example
         ///
         ///@brief Subscription to the Ping message from a tertiary node
         ///
-        rclcpp_lifecycle::LifecycleNode::SharedPtr              node_;
-        std::string                                             message_;
-        bool                                                    print_ping_pong_;
+        rclcpp_lifecycle::LifecycleNode::SharedPtr node_;
+        std::string message_;
+        bool print_ping_pong_;
     };
 }
 }

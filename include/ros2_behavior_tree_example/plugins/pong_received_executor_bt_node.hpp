@@ -53,12 +53,12 @@ namespace bt_ros_example
         ///
         /// @brief Subscription to the pong message from a tertiary node
         ///
-        std::string                                             sub_topic_;
-        rclcpp::executors::SingleThreadedExecutor               executor_;
-        rclcpp::CallbackGroup::SharedPtr                        callback_group_;
-        int32_t                                                 pong_id_received_;
-        rclcpp::Subscription<std_msgs::msg::Int32>::SharedPtr   sub_;
-        rclcpp_lifecycle::LifecycleNode::SharedPtr              node_;
+        std::string sub_topic_;
+        rclcpp::executors::SingleThreadedExecutor executor_;
+        rclcpp::CallbackGroup::SharedPtr callback_group_;
+        int32_t pong_id_received_;
+        rclcpp::Subscription<std_msgs::msg::Int32>::SharedPtr sub_;
+        rclcpp_lifecycle::LifecycleNode::SharedPtr node_;
     };
 }
 }

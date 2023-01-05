@@ -64,12 +64,12 @@ namespace bt_ros_example
         ///
         /// @brief Subscription to the Ping message from a tertiary node
         ///*/
-        std::string                                             pub_topic_;
-        rclcpp::Publisher<std_msgs::msg::Int32>::SharedPtr      pub_;
-        rclcpp_lifecycle::LifecycleNode::SharedPtr              node_;
-        int32_t                                                 curr_ping_in_burst_;
-        int32_t                                                 num_pings_;
-        std_msgs::msg::Int32                                    ping_msg_;
+        std::string pub_topic_;
+        rclcpp::Publisher<std_msgs::msg::Int32>::SharedPtr pub_;
+        rclcpp_lifecycle::LifecycleNode::SharedPtr node_;
+        int32_t curr_ping_in_burst_;
+        int32_t num_pings_;
+        std_msgs::msg::Int32 ping_msg_;
     };
 }
 }

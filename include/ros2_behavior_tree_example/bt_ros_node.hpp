@@ -102,10 +102,10 @@ protected:
     void
     timer_callback();
 
-    rclcpp::TimerBase::SharedPtr    timer_;
-    BT::Blackboard::Ptr             blackboard_;
-    BT::Tree                        tree_;
-    BT::BehaviorTreeFactory         factory_;
+    rclcpp::TimerBase::SharedPtr timer_;
+    BT::Blackboard::Ptr blackboard_;
+    BT::Tree tree_;
+    BT::BehaviorTreeFactory factory_;
 };
 }
 }
