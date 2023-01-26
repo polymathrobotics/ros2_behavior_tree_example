@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!-- Load this in groot through the load pallet command!-->
+<root>
+  <TreeNodesModel>
+    <!-- ############################### ACTION NODES ################################# -->
+    <Action ID="PingNode">
+        <input_port name="num_pings">Number of pings to send</input_port>
+        <output_port name="last_ping_id">Last ping id we sent</output_port>
+    </Action>
+
+    <Action ID="LogStatusNode">
+        <input_port name="message">Message to Log</input_port>
+        <input_port name="print_ping_pong">whether to log ping and pong ids</input_port>
+        <input_port name="ping_id">Number of pings sent</input_port>
+        <input_port name="pong_id">Number of pongs received</input_port>
+    </Action>
+
+    <!-- ############################### CONDITION NODES ############################## -->
+    <Action ID="PongReceivedNode">
+        <input_port name="force_pong">Force success first run</input_port>
+        <output_port name="last_pong_id">Last pong id we received</output_port>
+    </Action>
+
+    <Action ID="PongReceivedExecutorNode">
+        <input_port name="force_pong">Force success first run</input_port>
+        <output_port name="last_pong_id">Last pong id we received</output_port>
+    </Action>
+
+  </TreeNodesModel>
+</root>

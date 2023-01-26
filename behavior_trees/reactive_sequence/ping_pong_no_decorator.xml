@@ -1,0 +1,11 @@
+<root BTCPP_format="4">
+    <BehaviorTree ID="MainTree">
+        <Fallback>
+            <ReactiveSequence>
+                <PongReceivedNode force_pong="{ping_start}" last_pong_id="{pong_id}"/>
+                <PingNode num_pings="{num_publish}" last_ping_id="{ping_id}"/>
+            </ReactiveSequence>
+            <LogStatusNode message="No ping received" print_ping_pong="True" ping_id="{ping_id}" pong_id="{pong_id}"/>
+        </Fallback>
+    </BehaviorTree>
+</root>

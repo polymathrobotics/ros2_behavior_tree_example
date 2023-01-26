@@ -7,8 +7,9 @@ if(NOT CMAKE_C_STANDARD)
 endif()
 
 # Needs C++17 for BT
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 17)
+endif()
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -27,27 +28,40 @@ find_package(nav_msgs REQUIRED)
 find_package(nav2_msgs REQUIRED)
 find_package(std_srvs REQUIRED)
 find_package(tf2_ros REQUIRED)
+find_package(Boost COMPONENTS coroutine QUIET)
 
 set(dependencies 
-    # behaviortree_cpp
-    rclcpp
-    rclcpp_action
-    rclcpp_lifecycle
-    rclcpp_components
-    std_msgs
-    geometry_msgs
-    nav_msgs
-    nav2_msgs
-    std_srvs
-    tf2_ros
+  rclcpp
+  rclcpp_action
+  rclcpp_lifecycle
+  rclcpp_components
+  std_msgs
+  geometry_msgs
+  nav_msgs
+  nav2_msgs
+  std_srvs
+  tf2_ros
+  behaviortree_cpp
 )
 
 set(executable_name behavior_tree_example)
+set(library_name ${PROJECT_NAME})
 
 add_executable(
   ${executable_name}
   src/main.cpp
 )
+
+add_library(
+  ${library_name} SHARED
+  src/plugins/pong_received_bt_node.cpp
+  src/plugins/pong_received_executor_bt_node.cpp
+  src/plugins/ping_bt_node.cpp
+  src/plugins/log_status_bt_node.cpp
+  src/bt_ros_node.cpp
+)
+
+rclcpp_components_register_nodes(${library_name} "polymath::bt_ros_example::BtRosNode")
 
 include_directories(
   include
@@ -58,6 +72,18 @@ ament_target_dependencies(
   ${dependencies}
 )
 
+target_link_libraries(${executable_name} ${library_name})
+
+ament_target_dependencies(${library_name}
+  ${dependencies}
+)
+
+install(TARGETS ${library_name}
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin
+)
+
 install(TARGETS ${executable_name}
   RUNTIME DESTINATION lib/${PROJECT_NAME}
 )
@@ -66,7 +92,7 @@ install(DIRECTORY include/
   DESTINATION include/
 )
 
-install(DIRECTORY launch config
+install(DIRECTORY launch config behavior_trees
   DESTINATION share/${PROJECT_NAME})
 
 if(BUILD_TESTING)
@@ -81,5 +107,6 @@ if(BUILD_TESTING)
 endif()
 
 ament_export_include_directories(include)
+ament_export_libraries(${library_name})
 ament_export_dependencies(${dependencies})
 ament_package()
