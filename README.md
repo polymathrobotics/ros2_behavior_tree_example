@@ -44,10 +44,10 @@ Transitioning successful
 
 ### Secondary Node
 ```bash
-> ros2 lifecycle set /primary_ping_pong configure
+> ros2 lifecycle set /secondary_ping_pong configure
 Transitioning successful
 
-> ros2 lifecycle set /primary_ping_pong activate
+> ros2 lifecycle set /secondary_ping_pong activate
 Transitioning successful
 ```
 
