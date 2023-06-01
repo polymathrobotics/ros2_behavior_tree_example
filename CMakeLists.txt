@@ -17,7 +17,7 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-find_package(behaviortree_cpp REQUIRED)
+find_package(behaviortree_cpp_v3 REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_action REQUIRED)
 find_package(rclcpp_lifecycle REQUIRED)
@@ -41,7 +41,7 @@ set(dependencies
   nav2_msgs
   std_srvs
   tf2_ros
-  behaviortree_cpp
+  behaviortree_cpp_v3
 )
 
 set(executable_name behavior_tree_example)

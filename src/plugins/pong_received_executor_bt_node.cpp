@@ -4,7 +4,7 @@ namespace polymath
 {
 namespace bt_ros_example
 {
-    PongReceivedExecutorNode::PongReceivedExecutorNode(const std::string & condition_name, const BT::NodeConfig & conf)
+    PongReceivedExecutorNode::PongReceivedExecutorNode(const std::string & condition_name, const BT::NodeConfiguration & conf)
     : BT::ConditionNode(condition_name, conf),
     sub_topic_("incoming_pong"),
     pong_id_received_(-1)
