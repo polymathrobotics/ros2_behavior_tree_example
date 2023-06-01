@@ -6,7 +6,7 @@
 #include "ros2_behavior_tree_example/plugins/ping_bt_node.hpp"
 #include "ros2_behavior_tree_example/plugins/log_status_bt_node.hpp"
 
-#include "behaviortree_cpp/blackboard.h"
+#include "behaviortree_cpp_v3/blackboard.h"
 #include "rclcpp/publisher.hpp"
 
 #include "std_msgs/msg/string.hpp"
@@ -124,7 +124,7 @@ namespace bt_ros_example
     BtRosNode::timer_callback()
     {
         RCLCPP_INFO(this->get_logger(), "Ticking the tree");
-        tree_.tickOnce();
+        tree_.tickRoot();
         return;
     }
 }

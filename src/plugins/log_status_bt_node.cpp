@@ -4,7 +4,7 @@ namespace polymath
 {
 namespace bt_ros_example
 {
-    LogStatusNode::LogStatusNode(const std::string & action_name, const BT::NodeConfig & conf)
+    LogStatusNode::LogStatusNode(const std::string & action_name, const BT::NodeConfiguration & conf)
     : BT::SyncActionNode(action_name, conf),
       print_ping_pong_(false)
     {
