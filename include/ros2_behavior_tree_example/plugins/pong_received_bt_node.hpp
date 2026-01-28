@@ -1,7 +1,7 @@
 #ifndef PONG_RECEIVED_NODE_H_
 #define PONG_RECEIVED_NODE_H_
 
-#include "behaviortree_cpp/behavior_tree.h"
+#include "behaviortree_cpp_v3/behavior_tree.h"
 #include "rclcpp/rclcpp.hpp"
 #include "rclcpp_lifecycle/lifecycle_node.hpp"
 #include "std_msgs/msg/int32.hpp"
@@ -22,7 +22,7 @@ namespace bt_ros_example
         /// @param condition_name Name for the XML tag for this node
         /// @param conf BT Node Configuration
         ///
-        PongReceivedNode(const std::string & condition_name, const BT::NodeConfig & conf);
+        PongReceivedNode(const std::string & condition_name, const BT::NodeConfiguration & conf);
         PongReceivedNode() = delete;
         ~PongReceivedNode();
 

@@ -6,8 +6,8 @@
 #include "rclcpp_lifecycle/lifecycle_node.hpp"
 #include "rclcpp_lifecycle/lifecycle_publisher.hpp"
 
-#include "behaviortree_cpp/behavior_tree.h"
-#include "behaviortree_cpp/bt_factory.h"
+#include "behaviortree_cpp_v3/behavior_tree.h"
+#include "behaviortree_cpp_v3/bt_factory.h"
 
 namespace polymath
 {

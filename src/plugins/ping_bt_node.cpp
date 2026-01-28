@@ -6,7 +6,7 @@ namespace polymath
 namespace bt_ros_example
 {
 
-    PingNode::PingNode(const std::string &action_name, const BT::NodeConfig &conf)
+    PingNode::PingNode(const std::string &action_name, const BT::NodeConfiguration &conf)
     : BT::StatefulActionNode(action_name, conf),
     pub_topic_("outgoing_ping")
     {

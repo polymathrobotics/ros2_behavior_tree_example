@@ -1,7 +1,7 @@
 #ifndef PING_BT_NODE_H_
 #define PING_BT_NODE_H_
 
-#include "behaviortree_cpp/behavior_tree.h"
+#include "behaviortree_cpp_v3/behavior_tree.h"
 #include "rclcpp/rclcpp.hpp"
 #include "rclcpp_lifecycle/lifecycle_node.hpp"
 #include "std_msgs/msg/int32.hpp"
@@ -23,7 +23,7 @@ namespace bt_ros_example
         /// @param action_name Name for the XML tag for this node
         /// @param conf BT Node Configuration
         ///
-        PingNode(const std::string & action_name, const BT::NodeConfig & conf);
+        PingNode(const std::string & action_name, const BT::NodeConfiguration & conf);
         ~PingNode();
 
         ///
